@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disable Right Click</title>
+    <style>
+        /* Prevents image dragging */
+        img {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+        }
+    </style>
+</head>
+<body>
+    <img src="./4c11cc4095.jpg" alt="Your Image">
+
+    <script>
+        // Disable right-click on all images
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+
+        // Disable hold-down-and-save on Apple devices
+        document.addEventListener('touchstart', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.target.ontouchstart = function(event) {
+                    event.preventDefault();
+                };
+            }
+        });
+    </script>
+</body>
+</html>
